@@ -1,0 +1,7 @@
+- name: Install logrotate config file for program
+  template: 
+    src: program.conf.j2 
+    dest: "/etc/logrotate.d/{{ item.name }}"
+    #validate: /usr/sbin/logrotate -d %s
+  with_items: logrotate_logs
+

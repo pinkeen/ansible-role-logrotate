@@ -1,0 +1,21 @@
+{{ item.path }} {
+    missingok
+    notifempty
+    sharedscripts
+    
+    compress
+    delaycompress
+
+    size {{ item.max_size|default('1M') }}
+    rotate {{ item.max_count|default(30) }}
+
+{% if item.email is defined %}
+    mail {{ item.email }}
+{% endif %}
+
+{% if item.reload_service is defined %}
+    postrotate
+        /sbin/service {{ item.reload_service }} reload > /dev/null 2>/dev/null || true
+    endscript
+{% endif %}
+}
