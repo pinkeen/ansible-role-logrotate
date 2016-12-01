@@ -3,5 +3,5 @@
     src: program.conf.j2 
     dest: "/etc/logrotate.d/{{ item.name }}"
     #validate: /usr/sbin/logrotate -d %s
-  with_items: logrotate_logs
+  with_items: "{{ logrotate_logs }}"
 
