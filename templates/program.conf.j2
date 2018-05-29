@@ -2,7 +2,11 @@
     missingok
     notifempty
     sharedscripts
-    
+
+{% if item.su_user is defined and item.su_group is defined %}
+    su {{ item.su_user }} {{ item.su_group }}
+{% endif %}
+
     compress
     delaycompress
 
